@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lucas Samuel Zefiro da Costa — Portfólio</title>
+  <style>
+    :root {
+      --bg-color: #0b0f19;
+      --surface-color: #131a2a;
+      --surface-hover: #192236;
+      --border-color: #243049;
+      --text-primary: #f1f5f9;
+      --text-secondary: #94a3b8;
+      --accent: #38bdf8;
+      --accent-glow: rgba(56, 189, 248, 0.15);
+      --radius: 14px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-primary);
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 920px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Cabeçalho */
+    header {
+      padding: 72px 0 56px;
+      border-bottom: 1px solid var(--border-color);
+      background: radial-gradient(circle at top center, var(--accent-glow) 0%, transparent 65%);
+    }
+
+    .badge {
+      display: inline-block;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--accent);
+      background-color: rgba(56, 189, 248, 0.1);
+      border: 1px solid rgba(56, 189, 248, 0.25);
+      padding: 6px 14px;
+      border-radius: 999px;
+      margin-bottom: 20px;
+      letter-spacing: 0.02em;
+    }
+
+    h1 {
+      font-size: clamp(2rem, 4.5vw, 3rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.15;
+      margin-bottom: 14px;
+    }
+
+    .academic-info {
+      font-size: 1.1rem;
+      color: var(--text-secondary);
+      font-weight: 500;
+      margin-bottom: 20px;
+    }
+
+    .academic-info span {
+      color: var(--text-primary);
+    }
+
+    .bio {
+      font-size: 1.05rem;
+      color: var(--text-secondary);
+      max-width: 680px;
+      padding-left: 16px;
+      border-left: 3px solid var(--accent);
+    }
+
+    /* Conteúdo Principal */
+    main {
+      flex: 1;
+      padding: 56px 0;
+    }
+
+    .project-header {
+      margin-bottom: 32px;
+    }
+
+    .project-label {
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--accent);
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .project-title {
+      font-size: clamp(1.6rem, 3vw, 2.1rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+
+    .card {
+      background-color: var(--surface-color);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+      padding: 28px;
+      transition: transform 0.25s ease, border-color 0.25s ease, background-color 0.25s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(56, 189, 248, 0.45);
+      background-color: var(--surface-hover);
+    }
+
+    .card-number {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 8px;
+      display: block;
+    }
+
+    .card h3 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+      color: var(--text-primary);
+    }
+
+    .card p {
+      color: var(--text-secondary);
+      font-size: 0.98rem;
+    }
+
+    /* Rodapé */
+    footer {
+      border-top: 1px solid var(--border-color);
+      padding: 36px 0;
+      background-color: #080b12;
+    }
+
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .footer-title {
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      color: var(--text-primary);
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 500;
+      padding: 8px 16px;
+      border-radius: 8px;
+      background-color: var(--surface-color);
+      border: 1px solid var(--border-color);
+      transition: border-color 0.2s ease, color 0.2s ease;
+    }
+
+    .footer-links a:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    /* Classes para Animação via JS */
+    .reveal {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity 0.65s ease-out, transform 0.65s ease-out;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Responsividade */
+    @media (max-width: 700px) {
+      header {
+        padding: 48px 0 40px;
+      }
+
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      .card {
+        padding: 22px;
+      }
+
+      .footer-content {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="container reveal">
+      <span class="badge">Portfólio</span>
+      <h1>Lucas Samuel Zefiro da Costa</h1>
+      <p class="academic-info">
+        <span>Tecnologia em Análise e Desenvolvimento de Sistemas</span> &bull; FATEC Araçatuba
+      </p>
+      <p class="bio">
+        Gosto de desenvolver aplicações web e mobile completas, além de programar circuitos eletrônicos e microcontroladores.
+      </p>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <div class="project-header reveal">
+        <p class="project-label">Projeto em Destaque</p>
+        <h2 class="project-title">PalDex — Sistema de Gerenciamento de Palworld</h2>
+      </div>
+
+      <div class="grid">
+        <article class="card reveal">
+          <span class="card-number">01</span>
+          <h3>Problema</h3>
+          <p>
+            Jogadores de Palworld precisam organizar informações detalhadas sobre criaturas, recursos, equipamentos e estruturas da base durante a progressão no jogo, sem depender de anotações manuais espalhadas.
+          </p>
+        </article>
+
+        <article class="card reveal">
+          <span class="card-number">02</span>
+          <h3>O que eu fiz</h3>
+          <p>
+            Desenvolvi uma aplicação web full-stack para cadastrar, consultar, atualizar e excluir registros do universo do jogo de forma centralizada e sincronizada em tempo real.
+          </p>
+        </article>
+
+        <article class="card reveal">
+          <span class="card-number">03</span>
+          <h3>Como eu fiz</h3>
+          <p>
+            Estruturei o banco de dados na nuvem utilizando o Firebase para operações CRUD, integrando a interface web com HTML, CSS, JavaScript e TypeScript, além da arquitetura back-end com Node.js, Express, Prisma e Zod.
+          </p>
+        </article>
+
+        <article class="card reveal">
+          <span class="card-number">04</span>
+          <h3>Resultado</h3>
+          <p>
+            Entreguei um sistema funcional dividido em 5 módulos completos de gerenciamento (CRUD), garantindo organização persistente dos dados e validação estruturada em todas as operações.
+          </p>
+        </article>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container footer-content">
+      <p class="footer-title">Lucas Samuel Zefiro da Costa</p>
+      <div class="footer-links">
+        <a href="https://github.com/llukkasCosta" target="_blank" rel="noopener noreferrer">
+          GitHub: github.com/llukkasCosta
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const elements = document.querySelectorAll(".reveal");
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry, index) => {
+          if (entry.isIntersecting) {
+            setTimeout(() => {
+              entry.target.classList.add("visible");
+            }, index * 100);
+            observer.unobserve(entry.target);
+          }
+        });
+      }, {
+        threshold: 0.12
+      });
+
+      elements.forEach((el) => observer.observe(el));
+    });
+  </script>
+
+</body>
+</html>
